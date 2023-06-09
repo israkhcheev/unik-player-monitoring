@@ -3,15 +3,14 @@ package minecraft.unik.rakhchik.monitoring.config;
 import minecraft.unik.rakhchik.monitoring.PlayerMonitoringPlugin;
 
 import java.io.*;
-import java.nio.file.Files;
 
-public enum MetricConfig {
+public enum MetricConfigEnum {
 
     DEATH_METRIC(false);
 
     private boolean enable;
 
-    MetricConfig(boolean enable) {
+    MetricConfigEnum(boolean enable) {
         this.enable = enable;
     }
 
