@@ -1,0 +1,6 @@
+name: PlayerMonitoring
+version: '${project.version}'
+main: minecraft.unik.rakhchik.monitoring.PlayerMonitoring
+api-version: 1.19
+authors: [ rakhchik ]
+description: description
