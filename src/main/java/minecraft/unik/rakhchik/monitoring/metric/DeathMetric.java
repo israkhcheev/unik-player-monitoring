@@ -1,5 +1,6 @@
 package minecraft.unik.rakhchik.monitoring.metric;
 
+import minecraft.unik.rakhchik.monitoring.api.AbstractMetric;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -10,18 +11,19 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeathMetric implements IMetric<Integer> {
+public class DeathMetric extends AbstractMetric<Integer> {
 
     private final Map<String, Integer> values;
 
     public DeathMetric() {
-        // load from metric value
+        // TODO load from metric value
         this.values = new HashMap<>();
+        //
     }
 
     @Override
     public String getName() {
-        return "death";
+        return "player.death";
     }
 
     @Override

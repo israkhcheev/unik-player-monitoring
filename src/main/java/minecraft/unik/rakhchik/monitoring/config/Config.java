@@ -19,13 +19,13 @@ public abstract class Config {
         this.plugin = plugin;
     }
 
-    protected void reloadMetricsConfig(String configName) {
+    protected void loadConfig(String configName) {
         File metricsConfigFile = new File(plugin.getDataFolder(), configName);
         FileConfiguration metricsConfiguration = YamlConfiguration.loadConfiguration(metricsConfigFile);
         setDefaultIfExist(metricsConfiguration, configName);
     }
 
-    protected void setDefaultIfExist(FileConfiguration config, String configName) {
+    private void setDefaultIfExist(FileConfiguration config, String configName) {
         InputStream is = plugin.getResource(configName);
         if (Objects.nonNull(is)) {
             Reader defaultConfigurationReader = new InputStreamReader(Objects.requireNonNull(is), StandardCharsets.UTF_8);

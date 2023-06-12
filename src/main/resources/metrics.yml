@@ -1,0 +1,3 @@
+player.death: true
+player.block.break: true
+player.block.place: true
