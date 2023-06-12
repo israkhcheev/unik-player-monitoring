@@ -1,15 +1,16 @@
 package minecraft.unik.rakhchik.monitoring;
 
+
 import minecraft.unik.rakhchik.monitoring.handler.MetricHandler;
-import minecraft.unik.rakhchik.monitoring.metric.DeathMetric;
-import org.bukkit.Bukkit;
+
+import java.lang.reflect.InvocationTargetException;
 
 public final class PlayerMonitoring extends PlayerMonitoringPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new DeathMetric.DeathEventHandler(), this);
-        registerMetricHandler(new MetricHandler(this));
+//        Bukkit.getPluginManager().registerEvents(new DeathMetric.DeathEventHandler(), this);
+//        registerMetricHandler(new MetricHandler(this));
     }
 
     @Override

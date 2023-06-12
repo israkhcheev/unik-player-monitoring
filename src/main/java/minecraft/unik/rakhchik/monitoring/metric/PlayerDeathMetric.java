@@ -1,24 +1,31 @@
 package minecraft.unik.rakhchik.monitoring.metric;
 
+import minecraft.unik.rakhchik.monitoring.PlayerMonitoringPlugin;
 import minecraft.unik.rakhchik.monitoring.api.AbstractMetric;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeathMetric extends AbstractMetric<Integer> {
+public class PlayerDeathMetric extends AbstractMetric<Integer, PlayerDeathEvent> {
 
     private final Map<String, Integer> values;
 
-    public DeathMetric() {
+    public PlayerDeathMetric(JavaPlugin plugin) {
+        super(plugin);
         // TODO load from metric value
         this.values = new HashMap<>();
         //
+    }
+
+    @Override
+    protected void eventAction(PlayerDeathEvent e) {
+        int deathCount = e.getEntity().getStatistic(Statistic.DEATHS) + 1;
+        updateValue(e.getEntity(), deathCount);
     }
 
     @Override
@@ -45,26 +52,6 @@ public class DeathMetric extends AbstractMetric<Integer> {
     @Override
     public void updateValue(Player player, Integer value) {
         this.values.put(player.getName(), value);
-    }
-
-    public void incrementValue(Player player) {
-        updateValue(player, getValue(player) + 1);
-    }
-
-    public static class DeathEventHandler implements Listener {
-
-        private final DeathMetric metrics;
-
-        public DeathEventHandler() {
-            metrics = new DeathMetric();
-        }
-
-        @EventHandler
-        public void onDeath(PlayerDeathEvent e) {
-            int deathCount = e.getEntity().getStatistic(Statistic.DEATHS) + 1;
-            metrics.updateValue(e.getEntity(), deathCount);
-        }
-
     }
 
 }
