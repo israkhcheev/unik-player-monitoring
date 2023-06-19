@@ -1,11 +1,13 @@
-package minecraft.unik.rakhchik.monitoring.metric;
+package minecraft.unik.rakhchik.monitoring.api;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Map;
 
-public interface IMetric<T> {
+interface IMetric<T> {
+
+    // iRakhchik: {player.block.place: 12, player.death: 2}
 
     String getName();
 
